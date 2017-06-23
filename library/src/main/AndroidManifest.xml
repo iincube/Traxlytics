@@ -13,7 +13,7 @@
 
         <provider
             android:name="in.mtap.iincube.safetrax.traxlytics.provider.StoreProvider"
-            android:authorities="in.mtap.iincube.safetrax.traxlytics.localstore"
+            android:authorities="${applicationId}.traxlytics.localstore"
             android:exported="true"/>
     </application>
 

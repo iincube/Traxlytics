@@ -16,21 +16,22 @@ apply plugin: 'com.android.library'
 ext {
     bintrayRepo = 'Traxlytics'
     bintrayName = 'Traxlytics'
+
     publishedGroupId = 'in.mtap.iincube.safetrax'
     libraryName = 'Traxlytics'
     artifact = 'traxlytics'
 
     libraryDescription = 'Android crash and events logger with the help of Mongoser'
 
-    siteUrl = 'https://www.github.com/iincube'
-    gitUrl = 'https://github.com/karthyks/iincube/Traxlytics'
-    githubRepository = 'https://github.com/karthyks/Traxlytics.git'
+    siteUrl = 'https://www.safetrax.in/'
+    gitUrl = 'https://github.com/iincube/Traxlytics'
+    githubRepository = 'https://github.com/iincube/Traxlytics.git'
 
     libraryVersion = '1.0'
 
-    developerId = 'karthyks'
+    developerId = 'karthik.periasami'
     developerName = 'karthik periasami'
-    developerEmail = 'mail2karthyk@gmail.com'
+    developerEmail = 'karthik.periasami@mtap.in'
 
     licenseName = 'The Apache Software License, Version 2.0'
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
@@ -44,7 +45,7 @@ repositories {
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "25.0.3"
 
     defaultConfig {
         minSdkVersion 14
