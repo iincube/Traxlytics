@@ -46,7 +46,8 @@ public class SyncCloudIntentService extends IntentService {
   public void syncToCloud(Context context) throws Exception {
     if (!TraxUtils.hasToSync(context)) return;
     ContentResolver contentResolver = context.getContentResolver();
-    Uri eventUri = LocalStoreContract.EventStore.CONTENT_URI;
+    Uri eventUri = LocalStoreContract.getContentUri(LocalStoreContract.getAuthority(context),
+        LocalStoreContract.EventStore.TABLE_NAME);
     Cursor cursor = contentResolver.query(eventUri, EventModel.PROJECTION, null, null,
         LocalStoreContract.EventStore._ID + " ASC");
     List<EventModel> eventModelList = new LinkedList<>();

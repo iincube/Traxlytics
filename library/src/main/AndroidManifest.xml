@@ -12,9 +12,10 @@
         <service android:name=".services.SyncCloudIntentService"/>
 
         <provider
-            android:name="in.mtap.iincube.safetrax.traxlytics.provider.StoreProvider"
+            android:name="in.mtap.iincube.safetrax.traxlytics.provider.TraxlyticsProvider"
             android:authorities="${applicationId}.traxlytics.localstore"
             android:exported="true"/>
+
     </application>
 
 </manifest>

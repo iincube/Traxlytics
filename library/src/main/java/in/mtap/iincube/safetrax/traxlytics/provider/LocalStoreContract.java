@@ -2,19 +2,23 @@ package in.mtap.iincube.safetrax.traxlytics.provider;
 
 
 import android.content.ContentResolver;
+import android.content.Context;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
-import in.mtap.iincube.safetrax.traxlytics.Traxlytics;
+import static in.mtap.iincube.safetrax.traxlytics.model.EventModel.COLUMN_NAME_ANDROID_VERSION;
+import static in.mtap.iincube.safetrax.traxlytics.model.EventModel.COLUMN_NAME_APP_NAME;
+import static in.mtap.iincube.safetrax.traxlytics.model.EventModel.COLUMN_NAME_APP_VERSION;
+import static in.mtap.iincube.safetrax.traxlytics.model.EventModel.COLUMN_NAME_COMPANY;
+import static in.mtap.iincube.safetrax.traxlytics.model.EventModel.COLUMN_NAME_DEVICE_MODEL;
+import static in.mtap.iincube.safetrax.traxlytics.model.EventModel.COLUMN_NAME_EVENT_INFO;
+import static in.mtap.iincube.safetrax.traxlytics.model.EventModel.COLUMN_NAME_EVENT_TAG;
+import static in.mtap.iincube.safetrax.traxlytics.model.EventModel.COLUMN_NAME_TIME;
+import static in.mtap.iincube.safetrax.traxlytics.model.EventModel.COLUMN_NAME_USERNAME;
 
 public class LocalStoreContract {
-  public static final String CONTENT_AUTHORITY = Traxlytics.applicationId +
-      ".traxlytics.localstore";
-  private static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
+  public static final String TAG = LocalStoreContract.class.getSimpleName();
 
-  /**
-   * Constants used for the building content URI path.
-   */
   static final String PATH_EVENT = "event";
 
   private static final String TYPE_TEXT = " TEXT";
@@ -34,18 +38,7 @@ public class LocalStoreContract {
   public interface EventStore extends BaseColumns {
     String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd.traxlytics.event";
     String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/vnd.traxlytics.event";
-    Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH_EVENT)
-        .appendPath("all").build();
     String TABLE_NAME = "event";
-    String COLUMN_NAME_APP_NAME = "app_name";
-    String COLUMN_NAME_APP_VERSION = "app_version";
-    String COLUMN_NAME_ANDROID_VERSION = "android_version";
-    String COLUMN_NAME_DEVICE_MODEL = "device_model";
-    String COLUMN_NAME_COMPANY = "company";
-    String COLUMN_NAME_USERNAME = "username";
-    String COLUMN_NAME_EVENT_TAG = "event_tag";
-    String COLUMN_NAME_EVENT_INFO = "event_info";
-    String COLUMN_NAME_TIME = "time";
 
     String CREATE_QUERY = "CREATE TABLE " + TABLE_NAME + " (" + _ID + TYPE_INTEGER
         + " PRIMARY KEY" + COMMA_DELIMITER
@@ -60,5 +53,14 @@ public class LocalStoreContract {
         + COLUMN_NAME_TIME + TYPE_TEXT
         + " )";
     String DROP_QUERY = "DROP TABLE IF EXISTS " + TABLE_NAME;
+  }
+
+  public static Uri getContentUri(String authority, String tableName) {
+    return Uri.parse("content://" + authority).buildUpon().appendPath(tableName)
+        .appendPath("all").build();
+  }
+
+  public static String getAuthority(Context context) {
+    return context.getApplicationContext().getPackageName() + ".traxlytics.localstore";
   }
 }

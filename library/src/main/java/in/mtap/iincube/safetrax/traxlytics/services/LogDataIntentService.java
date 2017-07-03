@@ -10,6 +10,7 @@ import android.content.OperationApplicationException;
 import android.net.Uri;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -64,7 +65,10 @@ public class LogDataIntentService extends IntentService {
   }
 
   private void saveLocal(EventModel eventModel) {
-    Uri eventUri = LocalStoreContract.EventStore.CONTENT_URI;
+    String authority = LocalStoreContract.getAuthority(this);
+    Log.d(TAG, "saveLocal: " + authority);
+    Uri eventUri = LocalStoreContract.getContentUri(authority,
+        LocalStoreContract.EventStore.TABLE_NAME);
     ArrayList<ContentProviderOperation> batch = new ArrayList<>();
     ContentResolver contentResolver = getContentResolver();
     batch.add(ContentProviderOperation
@@ -72,7 +76,7 @@ public class LogDataIntentService extends IntentService {
         .withValues(eventModel.toContentValues())
         .build());
     try {
-      contentResolver.applyBatch(LocalStoreContract.CONTENT_AUTHORITY, batch);
+      contentResolver.applyBatch(authority, batch);
     } catch (RemoteException | OperationApplicationException e) {
       e.printStackTrace();
     }

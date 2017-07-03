@@ -53,7 +53,9 @@ public class TraxUtils {
 
   public static boolean hasToSync(Context context) {
     ContentResolver contentResolver = context.getContentResolver();
-    Uri eventUri = LocalStoreContract.EventStore.CONTENT_URI;
+    String authority = LocalStoreContract.getAuthority(context);
+    Uri eventUri = LocalStoreContract.getContentUri(authority,
+        LocalStoreContract.EventStore.TABLE_NAME);
     Cursor cursor = contentResolver.query(eventUri, EventModel.PROJECTION, null, null,
         LocalStoreContract.EventStore._ID + " ASC");
     boolean hasLocal = false;

@@ -10,16 +10,27 @@ import static in.mtap.iincube.safetrax.traxlytics.provider.LocalStoreContract.Ev
 
 public class EventModel implements Parcelable {
 
+  public static final String COLUMN_NAME_APP_NAME = "app_name";
+  public static final String COLUMN_NAME_APP_VERSION = "app_version";
+  public static final String COLUMN_NAME_ANDROID_VERSION = "android_version";
+  public static final String COLUMN_NAME_DEVICE_MODEL = "device_model";
+  public static final String COLUMN_NAME_COMPANY = "company";
+  public static final String COLUMN_NAME_USERNAME = "username";
+  public static final String COLUMN_NAME_EVENT_TAG = "event_tag";
+  public static final String COLUMN_NAME_EVENT_INFO = "event_info";
+  public static final String COLUMN_NAME_TIME = "time";
+
+
   public static final String[] PROJECTION = new String[]{
-      EventStore.COLUMN_NAME_APP_NAME,
-      EventStore.COLUMN_NAME_APP_VERSION,
-      EventStore.COLUMN_NAME_ANDROID_VERSION,
-      EventStore.COLUMN_NAME_DEVICE_MODEL,
-      EventStore.COLUMN_NAME_COMPANY,
-      EventStore.COLUMN_NAME_USERNAME,
-      EventStore.COLUMN_NAME_EVENT_TAG,
-      EventStore.COLUMN_NAME_EVENT_INFO,
-      EventStore.COLUMN_NAME_TIME
+      COLUMN_NAME_APP_NAME,
+      COLUMN_NAME_APP_VERSION,
+      COLUMN_NAME_ANDROID_VERSION,
+      COLUMN_NAME_DEVICE_MODEL,
+      COLUMN_NAME_COMPANY,
+      COLUMN_NAME_USERNAME,
+      COLUMN_NAME_EVENT_TAG,
+      COLUMN_NAME_EVENT_INFO,
+      COLUMN_NAME_TIME
   };
 
   private String appName;
@@ -80,31 +91,31 @@ public class EventModel implements Parcelable {
 
   public static EventModel fromCursor(Cursor cursor) {
     EventModel event = new EventModel();
-    event.appName = cursor.getString(cursor.getColumnIndex(EventStore.COLUMN_NAME_APP_NAME));
-    event.appVersion = cursor.getString(cursor.getColumnIndex(EventStore.COLUMN_NAME_APP_VERSION));
+    event.appName = cursor.getString(cursor.getColumnIndex(COLUMN_NAME_APP_NAME));
+    event.appVersion = cursor.getString(cursor.getColumnIndex(COLUMN_NAME_APP_VERSION));
     event.androidVersion = cursor.getString(cursor.getColumnIndex(
-        EventStore.COLUMN_NAME_ANDROID_VERSION));
+        COLUMN_NAME_ANDROID_VERSION));
     event.deviceModel = cursor.getString(cursor.getColumnIndex(
-        EventStore.COLUMN_NAME_DEVICE_MODEL));
-    event.company = cursor.getString(cursor.getColumnIndex(EventStore.COLUMN_NAME_COMPANY));
-    event.username = cursor.getString(cursor.getColumnIndex(EventStore.COLUMN_NAME_USERNAME));
-    event.tag = cursor.getString(cursor.getColumnIndex(EventStore.COLUMN_NAME_EVENT_TAG));
-    event.info = cursor.getString(cursor.getColumnIndex(EventStore.COLUMN_NAME_EVENT_INFO));
-    event.time = cursor.getLong(cursor.getColumnIndex(EventStore.COLUMN_NAME_TIME));
+        COLUMN_NAME_DEVICE_MODEL));
+    event.company = cursor.getString(cursor.getColumnIndex(COLUMN_NAME_COMPANY));
+    event.username = cursor.getString(cursor.getColumnIndex(COLUMN_NAME_USERNAME));
+    event.tag = cursor.getString(cursor.getColumnIndex(COLUMN_NAME_EVENT_TAG));
+    event.info = cursor.getString(cursor.getColumnIndex(COLUMN_NAME_EVENT_INFO));
+    event.time = cursor.getLong(cursor.getColumnIndex(COLUMN_NAME_TIME));
     return event;
   }
 
   public ContentValues toContentValues() {
     ContentValues contentValues = new ContentValues();
-    contentValues.put(EventStore.COLUMN_NAME_APP_NAME, appName);
-    contentValues.put(EventStore.COLUMN_NAME_APP_VERSION, appVersion);
-    contentValues.put(EventStore.COLUMN_NAME_ANDROID_VERSION, androidVersion);
-    contentValues.put(EventStore.COLUMN_NAME_DEVICE_MODEL, deviceModel);
-    contentValues.put(EventStore.COLUMN_NAME_COMPANY, company);
-    contentValues.put(EventStore.COLUMN_NAME_USERNAME, username);
-    contentValues.put(EventStore.COLUMN_NAME_EVENT_TAG, tag);
-    contentValues.put(EventStore.COLUMN_NAME_EVENT_INFO, info);
-    contentValues.put(EventStore.COLUMN_NAME_TIME, time);
+    contentValues.put(COLUMN_NAME_APP_NAME, appName);
+    contentValues.put(COLUMN_NAME_APP_VERSION, appVersion);
+    contentValues.put(COLUMN_NAME_ANDROID_VERSION, androidVersion);
+    contentValues.put(COLUMN_NAME_DEVICE_MODEL, deviceModel);
+    contentValues.put(COLUMN_NAME_COMPANY, company);
+    contentValues.put(COLUMN_NAME_USERNAME, username);
+    contentValues.put(COLUMN_NAME_EVENT_TAG, tag);
+    contentValues.put(COLUMN_NAME_EVENT_INFO, info);
+    contentValues.put(COLUMN_NAME_TIME, time);
     return contentValues;
   }
 

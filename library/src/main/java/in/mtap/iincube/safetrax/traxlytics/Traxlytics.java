@@ -3,6 +3,7 @@ package in.mtap.iincube.safetrax.traxlytics;
 
 import android.app.Application;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -18,13 +19,11 @@ public class Traxlytics {
 
   private static TraxEvent instance;
   public static ServerConfig serverConfig;
-  public static String applicationId = "in.mtap.iincube.safetrax.traxlytics";
 
   public static void init(@NonNull Application application, @NonNull ServerConfig serverConfig) {
     if (instance != null) {
       throw new IllegalStateException("Can be initialized only once!");
     }
-    applicationId = application.getPackageName();
     Traxlytics.serverConfig = serverConfig;
     instance = new TraxEvent(application);
   }
